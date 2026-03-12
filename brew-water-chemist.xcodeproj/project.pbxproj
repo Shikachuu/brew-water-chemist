@@ -29,9 +29,22 @@
 		D7D739FC2F632F9100EC3857 /* brew-water-chemistUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "brew-water-chemistUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D7D73C1C2F633D2800EC3857 /* Exceptions for "brew-water-chemist" folder in "brew-water-chemist" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D7D739E22F632F9000EC3857 /* brew-water-chemist */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		D7D739E52F632F9000EC3857 /* brew-water-chemist */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D7D73C1C2F633D2800EC3857 /* Exceptions for "brew-water-chemist" folder in "brew-water-chemist" target */,
+			);
 			path = "brew-water-chemist";
 			sourceTree = "<group>";
 		};
@@ -106,6 +119,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D7D73AC22F63385E00EC3857 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				D7D739E52F632F9000EC3857 /* brew-water-chemist */,
@@ -195,6 +209,9 @@
 			);
 			mainGroup = D7D739DA2F632F9000EC3857;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D7D73AC02F6337B500EC3857 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D7D739E42F632F9000EC3857 /* Products */;
 			projectDirPath = "";
@@ -265,6 +282,10 @@
 			isa = PBXTargetDependency;
 			target = D7D739E22F632F9000EC3857 /* brew-water-chemist */;
 			targetProxy = D7D739FD2F632F9100EC3857 /* PBXContainerItemProxy */;
+		};
+		D7D73AC22F63385E00EC3857 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = D7D73AC12F63385E00EC3857 /* SwiftLintBuildToolPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -400,11 +421,15 @@
 				DEVELOPMENT_TEAM = CGPH8LK52W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "brew-water-chemist/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Brew Water Chemist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -413,6 +438,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "hu.picloud.brew-water-chemist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -432,11 +461,15 @@
 				DEVELOPMENT_TEAM = CGPH8LK52W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "brew-water-chemist/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Brew Water Chemist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -445,6 +478,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "hu.picloud.brew-water-chemist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -578,6 +615,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D7D73AC02F6337B500EC3857 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.63.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D7D73AC12F63385E00EC3857 /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7D73AC02F6337B500EC3857 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D7D739DB2F632F9000EC3857 /* Project object */;
 }

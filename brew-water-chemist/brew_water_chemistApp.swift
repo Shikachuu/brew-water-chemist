@@ -1,32 +1,18 @@
-//
-//  brew_water_chemistApp.swift
-//  brew-water-chemist
-//
-//  Created by Máté Czékus on 2026. 03. 12..
-//
-
 import SwiftUI
 import SwiftData
 
 @main
-struct brew_water_chemistApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
+struct BrewWaterChemistApp: App {
+    @State private var router = AppRouter()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
+                .environment(router)
+                .onOpenURL { url in
+                    router.handleURL(url)
+                }
         }
-        .modelContainer(sharedModelContainer)
+        .modelContainer(for: [Recipe.self, AppSettings.self])
     }
 }

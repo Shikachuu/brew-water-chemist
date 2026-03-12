@@ -1,0 +1,17 @@
+disabled_rules:
+  - trailing_whitespace
+
+opt_in_rules:
+  - empty_count
+  - explicit_init
+  - trailing_comma
+
+trailing_comma:
+  mandatory_comma: true
+
+excluded:
+  - DerivedData
+  - brew-water-chemistTests
+  - brew-water-chemistUITests
+
+line_length: 120
