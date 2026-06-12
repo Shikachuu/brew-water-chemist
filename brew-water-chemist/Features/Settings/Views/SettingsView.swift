@@ -15,6 +15,7 @@ struct SettingsView: View {
                 Section("Water Quantities") {
                     ForEach(settings.quantities, id: \.self) { qty in
                         Text(formattedQuantity(qty))
+                            .accessibilityIdentifier("settings.quantity.\(qty)")
                     }
                     .onMove { indices, newOffset in
                         settings.quantities.move(fromOffsets: indices, toOffset: newOffset)
@@ -27,6 +28,7 @@ struct SettingsView: View {
                     } label: {
                         Label("Add Quantity", systemImage: "plus")
                     }
+                    .accessibilityIdentifier("settings.addQuantity")
                 }
 
                 Section("Default Mineral Kit") {
@@ -38,6 +40,7 @@ struct SettingsView: View {
                         Text(MineralKit.lotusStraight.displayName).tag(MineralKit.lotusStraight)
                     }
                     .pickerStyle(.menu)
+                    .accessibilityIdentifier("settings.mineralKit")
                 }
 
                 Section("Recipes") {
@@ -46,6 +49,7 @@ struct SettingsView: View {
                     } label: {
                         Text("Reset to Defaults")
                     }
+                    .accessibilityIdentifier("settings.reset")
                 }
             }
         }
@@ -70,10 +74,14 @@ struct SettingsView: View {
         }
     }
 
+    /// Formats a volume for display, showing litres alongside millilitres at 1000 mL and above
+    /// (e.g. `4500` → `"4L (4500 mL)"`) and plain millilitres below that.
     private func formattedQuantity(_ milliliters: Int) -> String {
         milliliters >= 1000 ? "\(milliliters / 1000)L (\(milliliters) mL)" : "\(milliliters) mL"
     }
 
+    /// Restores the default water quantities and mineral kit on the current settings. Does not
+    /// affect saved recipes.
     private func resetToDefaults() {
         guard let settings else { return }
         settings.quantities = [500, 1000, 2000, 3000, 4500, 10000]
@@ -94,6 +102,7 @@ struct AddQuantitySheet: View {
                 Section("Volume (mL)") {
                     TextField("Enter mL (e.g. 750)", text: $text)
                         .keyboardType(.numberPad)
+                        .accessibilityIdentifier("addQuantity.field")
                 }
             }
             .navigationTitle("Add Quantity")
@@ -110,6 +119,7 @@ struct AddQuantitySheet: View {
                         }
                     }
                     .disabled(parsedValue == nil)
+                    .accessibilityIdentifier("addQuantity.add")
                 }
             }
         }

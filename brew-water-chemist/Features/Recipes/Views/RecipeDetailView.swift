@@ -16,7 +16,9 @@ struct RecipeDetailView: View {
             let (hardness, alkalinity) = calculateGHKH(recipe: recipe)
             HStack(spacing: 12) {
                 SummaryCard(label: "General Hardness", value: hardness)
+                    .accessibilityIdentifier("detail.gh")
                 SummaryCard(label: "Alkalinity", value: alkalinity)
+                    .accessibilityIdentifier("detail.kh")
             }
             .padding(.horizontal)
 
@@ -46,6 +48,7 @@ struct RecipeDetailView: View {
                 } label: {
                     Image(systemName: "square.and.arrow.up")
                 }
+                .accessibilityIdentifier("detail.shareButton")
                 .glassEffect(.regular.interactive(), in: Circle())
             }
         }
@@ -59,6 +62,7 @@ struct RecipeDetailView: View {
                 viewModel.selectedVolumeMl = first
             }
         }
+        .keepScreenAwake()
     }
 }
 

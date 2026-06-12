@@ -26,6 +26,9 @@ struct RootView: View {
         }
     }
 
+    /// Seeds first-launch data: inserts the default recipes when none exist and a default
+    /// ``AppSettings`` when none exists. Safe to call on every appearance — it no-ops once
+    /// the store is populated.
     private func seedIfNeeded() {
         if recipes.isEmpty {
             Recipe.defaults.forEach { modelContext.insert($0) }

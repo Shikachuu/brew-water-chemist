@@ -38,8 +38,10 @@ struct ShareRecipeSheet: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") { dismiss() }
+                        .accessibilityIdentifier("share.done")
                 }
             }
         }
+        .keepScreenAwake()
     }
 }

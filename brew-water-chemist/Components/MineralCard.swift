@@ -16,6 +16,7 @@ struct MineralCard: View {
                 Text("\(value)")
                     .font(.largeTitle)
                     .fontWeight(.bold)
+                    .accessibilityIdentifier("mineral.\(label.lowercased()).value")
                 Text(unit)
                     .font(.subheadline)
                     .fontWeight(.medium)

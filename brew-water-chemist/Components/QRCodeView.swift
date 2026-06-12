@@ -12,9 +12,17 @@ struct QRCodeView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: size, height: size)
+                .accessibilityIdentifier("share.qrCode")
         }
     }
 
+    /// Renders the given string into a QR code image via Core Image.
+    ///
+    /// Uses medium ("M") error correction and scales the raw generator output 10× so the
+    /// code stays crisp when displayed (paired with `.interpolation(.none)`).
+    ///
+    /// - Parameter string: The text to encode, typically a share URL.
+    /// - Returns: The rendered QR image, or `nil` if generation failed.
     private func generateQRCode(from string: String) -> UIImage? {
         let context = CIContext()
         let filter = CIFilter.qrCodeGenerator()

@@ -19,6 +19,14 @@ struct AddRecipeParams: Identifiable {
     var selectedTab: AppTab = .recipes
     var addRecipePrefill: AddRecipeParams?
 
+    /// Handles an incoming `brew-water-chemist://add` deep link by prefilling a new recipe.
+    ///
+    /// Parses the recipe name and mineral concentrations from the URL's query items (missing
+    /// or unparseable minerals default to `0`), stores them in ``addRecipePrefill`` to trigger
+    /// the add-recipe sheet, and switches to the recipes tab. Links that don't match the
+    /// expected scheme/host are ignored.
+    ///
+    /// - Parameter url: The deep link to handle, typically produced by ``RecipeDetailViewModel/shareURL(for:)``.
     func handleURL(_ url: URL) {
         guard url.scheme == "brew-water-chemist",
               url.host == "add",

@@ -25,6 +25,7 @@ import SwiftData
         self.sodium = sodium
     }
 
+    /// The built-in starter recipes seeded on first launch and restored by "Reset to Defaults".
     static var defaults: [Recipe] {
         [
             Recipe(name: "Light and Bright", magnesium: 0, calcium: 60, potassium: 25, sodium: 0),

@@ -16,6 +16,7 @@ struct RecipeListView: View {
                     RecipeRowView(recipe: recipe)
                         .padding(.vertical, 4)
                 }
+                .accessibilityIdentifier("recipe.row.\(recipe.name)")
                 .listRowBackground(
                     RoundedRectangle(cornerRadius: 16)
                         .fill(Color.clear)
@@ -28,6 +29,7 @@ struct RecipeListView: View {
             }
             .onDelete(perform: deleteRecipes)
         }
+        .accessibilityIdentifier("recipes.list")
         .listStyle(.plain)
         .scrollContentBackground(.hidden)
         .searchable(text: $viewModel.searchText, prompt: "Search recipes...")
@@ -42,6 +44,7 @@ struct RecipeListView: View {
                 } label: {
                     Image(systemName: "plus")
                 }
+                .accessibilityIdentifier("recipes.addButton")
                 .glassEffect(.regular.interactive(), in: Circle())
             }
         }
@@ -53,6 +56,11 @@ struct RecipeListView: View {
         }
     }
 
+    /// Deletes recipes at the given offsets from the model context.
+    ///
+    /// Offsets index into the currently *filtered* list (what the user sees), so this resolves
+    /// them against ``RecipeListViewModel/filteredRecipes(_:)`` to delete the correct rows when
+    /// a search is active.
     private func deleteRecipes(offsets: IndexSet) {
         let filtered = viewModel.filteredRecipes(recipes)
         offsets.forEach { modelContext.delete(filtered[$0]) }

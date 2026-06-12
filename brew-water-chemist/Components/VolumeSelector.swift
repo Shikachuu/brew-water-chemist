@@ -19,6 +19,7 @@ struct VolumeSelector: View {
                                 .padding(.vertical, 8)
                                 .foregroundStyle(selectedVolume == volume ? .primary : .secondary)
                         }
+                        .accessibilityIdentifier("volume.\(volume)")
                         .glassEffect(.regular.interactive(), in: Capsule())
                     }
                 }
