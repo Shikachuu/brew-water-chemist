@@ -15,9 +15,10 @@ workflows:
   deploy:
     summary: Clone, test, build a signed release IPA, and upload it to App Store Connect (TestFlight).
     steps:
-    - activate-ssh-key@4: {}
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
     - git-clone@8: {}
-    - restore-spm-cache@2: {}
+    - restore-spm-cache@3: {}
     - script@1:
         title: Skip SwiftLint plugin fingerprint validation
         summary: SwiftLint runs as an SPM build-tool plugin; headless CI must bypass the plugin fingerprint prompt.
@@ -32,15 +33,16 @@ workflows:
         - project_path: $BITRISE_PROJECT_PATH
         - scheme: $BITRISE_SCHEME
         - destination: platform=iOS Simulator,name=iPhone 16,OS=latest
-    - xcode-archive@5:
+    - xcode-archive@6:
         inputs:
         - project_path: $BITRISE_PROJECT_PATH
         - scheme: $BITRISE_SCHEME
         - distribution_method: app-store
         - automatic_code_signing: api-key
         - xcconfig_content: |-
+            COMPILER_INDEX_STORE_ENABLE = NO
             CURRENT_PROJECT_VERSION = $BITRISE_BUILD_NUMBER
-    - deploy-to-app-store-connect@1:
+    - deploy-to-itunesconnect-application-loader@2:
         inputs:
         - connection: api_key
         - bundle_id: hu.picloud.brew-water-chemist
