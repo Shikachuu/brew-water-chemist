@@ -1,0 +1,48 @@
+format_version: "13"
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: ios
+
+app:
+  envs:
+  - BITRISE_PROJECT_PATH: brew-water-chemist.xcodeproj
+  - BITRISE_SCHEME: brew-water-chemist
+
+trigger_map:
+- push_branch: main
+  workflow: deploy
+
+workflows:
+  deploy:
+    summary: Clone, test, build a signed release IPA, and upload it to App Store Connect (TestFlight).
+    steps:
+    - activate-ssh-key@4: {}
+    - git-clone@8: {}
+    - restore-spm-cache@2: {}
+    - script@1:
+        title: Skip SwiftLint plugin fingerprint validation
+        summary: SwiftLint runs as an SPM build-tool plugin; headless CI must bypass the plugin fingerprint prompt.
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -eo pipefail
+            defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
+            defaults write com.apple.dt.Xcode IDESkipMacroFingerprintValidation -bool YES
+    - xcode-test@6:
+        inputs:
+        - project_path: $BITRISE_PROJECT_PATH
+        - scheme: $BITRISE_SCHEME
+        - destination: platform=iOS Simulator,name=iPhone 16,OS=latest
+    - xcode-archive@5:
+        inputs:
+        - project_path: $BITRISE_PROJECT_PATH
+        - scheme: $BITRISE_SCHEME
+        - distribution_method: app-store
+        - automatic_code_signing: api-key
+        - xcconfig_content: |-
+            CURRENT_PROJECT_VERSION = $BITRISE_BUILD_NUMBER
+    - deploy-to-app-store-connect@1:
+        inputs:
+        - connection: api_key
+        - bundle_id: hu.picloud.brew-water-chemist
+    - save-spm-cache@1: {}
+    - deploy-to-bitrise-io@2: {}
